@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=cyrillic');
+@import url('normalize.css');
+
+* {
+  font-family: "Roboto", sans-serif;
+  outline: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background: url(../images/s1200.png);
+  background-attachment: fixed;
+  /* background: #e0ffff; */
+}
+
+.flex { 
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          -webkit-align-items: center;
+          align-items: center;
+}
+.wrapper {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.header-top {
+  background-color: #09C;
+  padding: 7px 0;
+}
+.header-center {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  background: url(../images/bg-bottom.png) no-repeat center bottom,
+              url(../images/bg-table.jpg) no-repeat center;
+}
+.menu {
+  background-color: #09C;
+}
+.menu--fixed {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.menu__wrapper, .header-bottom {
+  height: 45px;
+}
+.menu__item {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  flex-grow: 2;
+  text-align: center;
+}
+.title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 16px;
+  text-align: center;
+}
+.title strong {
+  padding-top: 10px;
+  display: block;
+  font-size: 28px;
+}
+.header-top__wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.header-top__wrapper a {
+  color: #ffffff;
+  display: block;
+  font-weight: 500;
+}
+.header-top__wrapper a:hover {
+  text-decoration: underline;
+}
+.header__mail {
+  background: url(../images/mail.svg) no-repeat center left;
+  background-size: 17px 17px;
+  padding-left: 23px;
+  position: relative;
+  margin-right: 40px;
+}
+.header__phone {
+  background: url(../images/phone.svg) no-repeat center left;
+  background-size: 17px 17px;
+  padding-left: 23px;
+}
+.header__mail::after {
+  position: absolute;
+  display: inline-block;
+  height: 17px;
+  top: 2px;
+  width: 1px;
+  background: #fff;
+  content: '';
+  margin: 0 20px;
+}
+.footer {
+  height: 200px;
+  background-color: #09C;
+}
+.main__wrapper {
+  display: flex;
+  align-items: flex-start;
+  padding: 30px 20px;
+  background: #fff;
+  /* border-left: 1px solid #ddd; */
+  /* border-right: 1px solid #ddd; */
+}
+.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  height: 600px;
+  margin-left: 30px;
+  background: #fff;
+  /* box-shadow: 0 0 3px 1px rgba(0,0,0,.3); */
+}
+.content {
+  flex-grow: 2;
+  background: #fff;
+  /* box-shadow: 0 0 3px 1px rgba(0,0,0,.3); */
+  height: 1000px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.sidebar__block {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.sidebar__block_title {
+  display: block;
+  border-bottom: 1px solid #ddd;
+  padding: 7px;
+  text-align: center;
+  color: #113255;
+  font-size: 16px;
+  font-weight: 500;
+}
+.sidebar__block_content {
+  padding: 20px;
+}
+.search-form {
+  position: relative;
+}
+.input {
+  display: block;
+  height: 40px;
+  border: 1px solid #ddd;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+.input:active,
+.input:focus {
+  border-color: #09c;
+}
+.search-input {
+  width: 100%;
+  padding-right: 45px;
+}
+.search-submit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background: url(../images/search.svg) no-repeat center, #09c;
+  background-size: 20px 20px;
+  border: none;
+  font-size: 0;
+  color: transparent;
+  padding: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.search-submit:hover {
+  background-color: rgb(0, 134, 179);
+}
+.eye-btn {
+  padding: 10px;
+  border-radius: 5px;
+  background: rgb(218, 0, 0);
+  color: #ffffff;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.eye-btn:hover {
+  background: rgb(190, 0, 0);
+}
+.eye-btn i {
+  display: block;
+  width: 45px;
+  height: 40px;
+  background: url(../images/eye.svg) no-repeat center;
+  background-size: contain;
+  margin-right: 15px;
+}
+.eye-btn span {
+  display: block;
+  /* background: #000; */
+}
+
+
+
+
+
+
+
+
