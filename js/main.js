@@ -7,7 +7,7 @@ $(document).ready(function(){
     }
   });
 
-  $('.slider').slick({
+  $('.js-slider').slick({
     dots: true,
     infinite: true,
     speed: 300,

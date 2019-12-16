@@ -28,8 +28,15 @@
       <nav class="menu">
         <div class="wrapper">
           <div class="menu__wrapper flex">
-            <div class="menu__item">
+            <div class="menu__item menu__item--withdrop">
               <a href="">Главная</a>
+              <ul class="menu-drop">
+                <div class="menu-drop__container">
+                  <li class="menu-drop__item">
+                    <a href="">Карта сайта</a>
+                  </li>
+                </div>                
+              </ul>
             </div>
             <div class="menu__item">
               <a href="">Новости</a>
@@ -42,7 +49,19 @@
                     <a href="">О себе</a>
                   </li>
                   <li class="menu-drop__item">
-                    <a href="">Награды</a>
+                    <a href="">Курсы повышения квалификации</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Обобщение педагогического опыта</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Мои достижения</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Достижения учащихся</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Фотоальбом</a>
                   </li>
                 </div>                
               </ul>
@@ -77,10 +96,13 @@
                     <a href="">Родителям</a>
                   </li>
                   <li class="menu-drop__item">
+                    <a href="">ОГЭ</a>
+                  </li>
+                  <li class="menu-drop__item">
                     <a href="">ЕГЭ</a>
                   </li>
                   <li class="menu-drop__item">
-                    <a href="">ОГЭ</a>
+                    <a href="">Медиатека</a>
                   </li>
                 </div>
               </ul>
@@ -105,26 +127,30 @@
 
   <main class="main">
     <div class="slider">
-      <div class="slider__item">
-        <div class="slider__item_container"><img src="images/slide1.jpg" alt=""></div>
-      </div>
-      <div class="slider__item">
-        <div class="slider__item_container"><img src="images/slide2.jpg" alt=""></div>
-      </div>
-      <div class="slider__item">
-        <div class="slider__item_container"><img src="images/slide3.jpg" alt=""></div>
-      </div>
-      <div class="slider__item">
-        <div class="slider__item_container"><img src="images/slide4.jpg" alt=""></div>
-      </div>
-      <div class="slider__item">
-        <div class="slider__item_container"><img src="images/slide5.jpg" alt=""></div>
+      <div class="wrapper">
+        <div class="slider__wrapper js-slider">
+          <div class="slider__item">
+            <div class="slider__item_container"><img src="images/slide1.jpg" alt=""></div>
+          </div>
+          <div class="slider__item">
+            <div class="slider__item_container"><img src="images/slide2.jpg" alt=""></div>
+          </div>
+          <div class="slider__item">
+            <div class="slider__item_container"><img src="images/slide3.jpg" alt=""></div>
+          </div>
+          <div class="slider__item">
+            <div class="slider__item_container"><img src="images/slide4.jpg" alt=""></div>
+          </div>
+          <div class="slider__item">
+            <div class="slider__item_container"><img src="images/slide3.jpg" alt=""></div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="wrapper">
       <div class="main__wrapper">
         <section class="content">
-          <div class="photo"><img src="" alt=""></div>
+          <div class="photo"><img src="images/foto.jpg" alt=""></div>
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
           Iusto dolores eius ut possimus ducimus commodi dignissimos 
           il iste, sed voluptatem ad corporis minima quisquam neque expedita earum, quis qui eligendi. Fugiat veniam fugit harum, non molestias quo rem dolore eos cum enim, eius dolores nam incidunt laboriosam ab voluptatum amet pariatur animi vitae obcaecati ipsum alias? Iusto odio dolorem dignissimos rem, debitis minus nobis veritatis assumenda? Quam eum cumque beatae omnis recusandae sequi deserunt voluptates illum ipsa animi repellendus quas odit, sapiente repellat soluta minus. Repellendus voluptatibus assumenda fugiat, corporis reiciendis tempore nulla voluptate optio sint in cupiditate soluta vero. </p>
@@ -146,7 +172,7 @@
             <div class="sidebar__block_content">
               <form class="search-form">
                 <input type="text" class="input search-input" placeholder="Введите запрос...">
-                <input type="submit" value="" class="submit search-submit">
+                <input type="submit" value="" class="search-submit">
               </form>
             </div>
           </div>
@@ -175,42 +201,69 @@
       </div>
 
       <div class="partners">
-        <a href="" class="partner">
+        <a href="https://edu.gov.ru/" class="partner" target="_blank">
           <div class="partner__container">
             <img src="images/minprorf.png" alt="">
             <strong>Министерство просвещения РФ</strong>
           </div>
         </a>
-        <a href="" class="partner">
+        <a href="https://minobr.nso.ru/" class="partner" target="_blank">
           <div class="partner__container">
             <img src="images/minobr.png" alt="">
             <strong>Министерство образования НСО</strong>
           </div>
         </a>
-        <a href="" class="partner">
+        <a href="http://s_2.kuyby.edu54.ru/" class="partner" target="_blank">
           <div class="partner__container">
             <img src="images/sosh2.png" alt="">
             <strong>МБОУ СОШ №2</strong>
           </div>
         </a>
-        <a href="" class="partner">
+        <a href="http://kuibyshev.nso.ru/" class="partner" target="_blank">
           <div class="partner__container">
             <img src="images/raion.png" alt="">
             <strong>Администрация Куйбышевского района Новосибирской области</strong>
           </div>
         </a>
-        <a href="" class="partner">
+        <a href="http://www.ege.edu.ru/ru/" class="partner" target="_blank">
           <div class="partner__container">
-            <img src="images/minobr.png" alt="">
-            <strong>Министерство образования НСО</strong>
+            <img src="images/ege-edu.jpg" alt="">
+            <strong>Официальный информационный портал единого государственного экзамена </strong>
           </div>
         </a>
-        <a href="" class="partner">
+        <a href="http://www.edu.ru/" class="partner">
           <div class="partner__container">
-            <img src="images/sosh2.png" alt="">
-            <strong>Министерство просвещения</strong>
+            <img src="images/edu.png" alt="">
+            <strong>Федеральный портал <br> Российское образование</strong>
           </div>
         </a>
+        <a href="http://www.ug.ru/" class="partner">
+          <div class="partner__container">
+            <img src="images/ug.png" alt="">
+            <strong>Учительская газета</strong>
+          </div>
+        </a>
+        <a href="http://fipi.ru/" class="partner">
+          <div class="partner__container">
+            <img src="images/fipi.png" alt="">
+            <strong>Федеральный институт педагогических измерений</strong>
+          </div>
+        </a>
+      </div>
+
+      <div class="form">
+        <h2 class="form__title">Уважаемые обучающиеся, родители и коллеги! <br> Жду ваших вопросов, пожеланий и предложений!</h2>
+        <form class="form__block">
+          <input type="text" class="input form__input" placeholder="Имя*" required>
+          <input type="email" class="input form__input" placeholder="E-mail*" required>
+          <textarea class="input textarea form__textarea" placeholder="Сообщение*" required></textarea>
+          <label class="check">
+            <input type="checkbox" checked>
+            <span class="check__custom"></span>
+            <span class="check__text">Я даю согласие на <a href="/privacy-policy" target="_blank">обработку персональных данных</a></span>
+          </label>
+          <input type="submit" class="submit form__submit" value="Отправить">
+        </form>
       </div>
 
     </div>
