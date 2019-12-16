@@ -225,6 +225,18 @@ body {
   flex-grow: 2;
   font-size: 16px;
   line-height: 1.6;
+  color: #113255;
+}
+.content h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 20px;
+  color: #0099cc;
+}
+.content p {
+  margin: 0 0 15px;
+  text-indent: 20px;
 }
 
 .sidebar__block {
@@ -447,6 +459,7 @@ overflow: hidden;
 
 
 .form {
+  clear: both;
   padding: 30px 0 45px;
   background: #fff;
 }
