@@ -221,8 +221,16 @@ body {
   display: block;
   /* background: #000; */
 }
-
-
+.photo {
+  background: #eee;
+  width: 250px;
+  height: 320px;
+  margin: 0 20px 20px 0;
+  float: left;
+}
+.content p {
+  margin: 0 0 15px;
+}
 
 
 
