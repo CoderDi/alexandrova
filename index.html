@@ -28,13 +28,72 @@
       <nav class="menu">
         <div class="wrapper">
           <div class="menu__wrapper flex">
-            <a href="" class="menu__item">Портфолио</a>
-            <a href="" class="menu__item">Для вас, ученики!</a>
-            <a href="" class="menu__item">В помощь учителю</a>
-            <a href="" class="menu__item">Для родителей</a>
-            <a href="" class="menu__item">Новости</a>
-            <a href="" class="menu__item">Обратная связь</a>
-            <a href="" class="menu__item">Методическая копилка</a>
+            <div class="menu__item">
+              <a href="">Главная</a>
+            </div>
+            <div class="menu__item menu__item--withdrop">
+              <span>Портфолио</span>
+              <ul class="menu-drop">
+                <div class="menu-drop__container">
+                  <li class="menu-drop__item">
+                    <a href="">О себе</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Награды</a>
+                  </li>
+                </div>                
+              </ul>
+            </div>
+            <div class="menu__item menu__item--withdrop">
+              <span>Полезное</span>
+              <ul class="menu-drop">
+                <div class="menu-drop__container">
+                  <li class="menu-drop__item menu-drop__item--withdrop">
+                    <a>Ученикам</a>
+                    <ul class="menu-drop menu-drop2">
+                      <li class="menu-drop__item">
+                        <a href="">Ссылка 1</a>
+                      </li>
+                      <li class="menu-drop__item">
+                        <a href="">Ссылка 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-drop__item menu-drop__item--withdrop">
+                    <a>Коллегам</a>
+                    <ul class="menu-drop menu-drop2">
+                      <li class="menu-drop__item">
+                        <a href="">Ссылка 1</a>
+                      </li>
+                      <li class="menu-drop__item">
+                        <a href="">Ссылка 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Родителям</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">ЕГЭ</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">ОГЭ</a>
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div class="menu__item">
+              <a href="">Методика</a>
+            </div>
+            <div class="menu__item">
+              <a href="">Нормативные документы</a>
+            </div>
+            <div class="menu__item">
+              <a href="">Отзывы</a>
+            </div>
+            <div class="menu__item">
+              <a href="">Контакты</a>
+            </div>
           </div>
         </div>
       </nav>
@@ -42,6 +101,23 @@
   </header>
 
   <main class="main">
+    <div class="slider">
+      <div class="slider__item">
+        <div class="slider__item_container"><img src="images/slide1.jpg" alt=""></div>
+      </div>
+      <div class="slider__item">
+        <div class="slider__item_container"><img src="images/slide2.jpg" alt=""></div>
+      </div>
+      <div class="slider__item">
+        <div class="slider__item_container"><img src="images/slide3.jpg" alt=""></div>
+      </div>
+      <div class="slider__item">
+        <div class="slider__item_container"><img src="images/slide4.jpg" alt=""></div>
+      </div>
+      <div class="slider__item">
+        <div class="slider__item_container"><img src="images/slide5.jpg" alt=""></div>
+      </div>
+    </div>
     <div class="wrapper">
       <div class="main__wrapper">
         <section class="content">
@@ -73,6 +149,20 @@
           </div>
 
           <div class="sidebar__block">
+            <strong class="sidebar__block_title">Последние комментарии</strong>
+            <div class="sidebar__block_content">
+              <div class="sidebar-comment">
+                <a href="" class="sidebar-comment__author">Admin</a> к записи
+                <a href="" class="sidebar-comment__title">Рада приветствовать Вас на моем сайте</a>
+              </div>
+              <div class="sidebar-comment">
+                <a href="" class="sidebar-comment__author">Admin</a> к записи
+                <a href="" class="sidebar-comment__title">Рада приветствовать Вас на моем сайте</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar__block">
             <strong class="sidebar__block_title">Календарь</strong>
             <div class="sidebar__block_content">
               <div class="datepicker-here"></div>
@@ -80,6 +170,46 @@
           </div>
         </aside>
       </div>
+
+      <div class="partners">
+        <a href="" class="partner">
+          <div class="partner__container">
+            <img src="images/minprorf.png" alt="">
+            <strong>Министерство просвещения РФ</strong>
+          </div>
+        </a>
+        <a href="" class="partner">
+          <div class="partner__container">
+            <img src="images/minobr.png" alt="">
+            <strong>Министерство образования НСО</strong>
+          </div>
+        </a>
+        <a href="" class="partner">
+          <div class="partner__container">
+            <img src="images/sosh2.png" alt="">
+            <strong>Министерство просвещения</strong>
+          </div>
+        </a>
+        <a href="" class="partner">
+          <div class="partner__container">
+            <img src="images/minprorf.png" alt="">
+            <strong>Министерство просвещения РФ</strong>
+          </div>
+        </a>
+        <a href="" class="partner">
+          <div class="partner__container">
+            <img src="images/minobr.png" alt="">
+            <strong>Министерство образования НСО</strong>
+          </div>
+        </a>
+        <a href="" class="partner">
+          <div class="partner__container">
+            <img src="images/sosh2.png" alt="">
+            <strong>Министерство просвещения</strong>
+          </div>
+        </a>
+      </div>
+
     </div>
   </main>
 

@@ -6,4 +6,28 @@ $(document).ready(function(){
       $(".menu").removeClass("menu--fixed")
     }
   });
+
+  $('.slider').slick({
+    dots: false,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
+    centerMode: true,
+    variableWidth: true,
+    autoplay: true,
+    autoplaySpeed: 6000,
+    focusOnSelect: true,
+    infinite: true,
+    arrows: false
+  });
+
+  $('.partners').slick({
+    dots: false,
+    infinite: true,
+    speed: 300,
+    autoplay: true,
+    autoplaySpeed: 6000,
+    arrows: true,
+    slidesToShow: 5
+  });
 });
