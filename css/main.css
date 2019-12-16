@@ -200,8 +200,14 @@ body {
   margin: 0 20px;
 }
 .footer {
-  height: 200px;
+  padding: 30px;
   background-color: #09C;
+}
+.footer__title {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
 }
 .main__wrapper {
   display: flex;
@@ -333,11 +339,40 @@ body {
 
 .slider {
 margin-top: 20px;
+height: 300px;
+overflow: hidden;
 }
 .slider__item img {
   height: 300px;
   width: auto;
   display: block;
+}
+.slider .slick-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.slider .slick-dots button {
+  font-size: 0;
+  color: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  margin: 0 5px;
+  background-color: #fff;
+}
+.slider .slick-dots button:hover,
+.slider .slick-dots .slick-active button {
+  background-color: #09c;
 }
 
 .partners {
