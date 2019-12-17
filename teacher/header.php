@@ -4,64 +4,135 @@
  */
 
 ?>
-
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <title><?php bloginfo('name'); ?></title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<meta property="og:title" content="Федерация спортивного ориентирования Республики Татарстан"/>
-	<meta property="og:description" content=""/>
-	<meta property="og:image" content="https://tatorient.ru/wp-content/uploads/2019/11/news2.png"/>
-	<meta property="og:type" content="profile"/>
-	<meta property="og:url" content= "https://tatorient.ru/" />
-    <meta name="format-detection" content="telephone=no">
-    <link rel="shortcut icon" href="<?php echo  get_stylesheet_directory_uri(); ?>/img/favicons/favicon.png" type="image/png">
+<head>
+  <title><?php bloginfo('name'); ?></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="shortcut icon" href="<?php echo  get_stylesheet_directory_uri(); ?>/images/favicon.png" type="image/png">
+  <link rel="stylesheet" href="<?php echo  get_stylesheet_directory_uri(); ?>/libs/slick/slick.css">
+  <link rel="stylesheet" href="<?php echo  get_stylesheet_directory_uri(); ?>/libs/air-datepicker/datepicker.min.css">
+  <link rel="stylesheet" href="<?php echo  get_stylesheet_directory_uri(); ?>/style.css">
+  <?php wp_head();?>
 
-    <?php wp_head(); 
-    $all_options = get_option('true_options');
-    ?>
-  </head>
-  <body>
-    <main class="content     <?php if (!(is_front_page())) { 
-                                echo " content--page"; } ?>">
-      <?php if (!(is_front_page())) {
-        echo "<div class='page-left'></div>";} ?>
-      <header class="header">
+</head> 
+<body>
+  <header class="header">
+    <div class="header-top">
+      <div class="wrapper">
+        <div class="header-top__wrapper">
+          <a href="mailto:email@mail.ru" class="header__mail">alexandrovaza@mail.ru</a>
+          <a href="tel:8-383-62-00-000" class="header__phone">8-383-62-00-000</a>
+        </div>
+      </div>
+    </div>
+    <div class="header-center">
+      <div class="wrapper header-center__wrapper">
+        <h1 class="title">Персональный сайт учителя математики <strong>Александровой Зои Алексеевны</strong></h1>
+      </div>
+    </div>
+    <div class="header-bottom">
+      <nav class="menu">
         <div class="wrapper">
-          <div class="header__wrapper flex"><a class="logo flex" href="/"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/img/icons/icons.svg#logo" alt="Логотип"><strong>федерация спортивного <br>ориентирования<br>республики татарстан</strong></a>
-            <div class="menu">
-              <div class="menu__container"><a class="logo flex menu__logo" href="/"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/img/icons/icons.svg#logo" alt="Логотип"><strong>федерация спортивного <br>ориентирования<br>республики татарстан</strong></a>
-                <div class="socials flex header__socials">
-                  <?php $vk = $all_options['my_vk']; 
-                    if ($vk) {?>
-                      <a class="socials__item socials__item--vk" href="<?php echo $all_options['my_vk']; ?>" target="_blank">
-                        <img src="<?php echo  get_stylesheet_directory_uri(); ?>/img/icons/icons.svg#vk" alt="">
-                      </a>
-                  <?php } ?>
-                  
-                  <?php $ig = $all_options['my_ig']; 
-                    if ($ig) {?>
-                      <a class="socials__item socials__item--ig" href="<?php echo $all_options['my_ig']; ?>" target="_blank">
-                        <img src="<?php echo  get_stylesheet_directory_uri(); ?>/img/icons/icons.svg#insta" alt="">
-                      </a>
-                  <?php } ?>
-                </div>
-                <ul class="menu-main flex">
-                  <li class="menu-main__item"><a href="/news">новости</a></li>
-                  <li class="menu-main__item"><a href="/federation">федерация</a></li>
-                  <li class="menu-main__item"><a href="/national">сборная</a></li>
-                  <li class="menu-main__item"><a href="/sorevnovania">соревнования</a></li>
-                  <li class="menu-main__item"><a href="/docs">документы</a></li>
-                  <li class="menu-main__item"><a href="/story">история</a></li>
-                  <li class="menu-main__item"><a href="/poleznye-ssylki">ссылки</a></li>
-                  <li class="menu-main__item"><a href="/contacts">контакты</a></li>
-                </ul>
-              </div>
+          <div class="menu__wrapper flex">
+            <div class="menu__item menu__item--withdrop">
+              <a href="">Главная</a>
+              <ul class="menu-drop">
+                <div class="menu-drop__container">
+                  <li class="menu-drop__item">
+                    <a href="">Карта сайта</a>
+                  </li>
+                </div>                
+              </ul>
             </div>
-            <div class="socials flex mobile__socials"><a class="socials__item socials__item--vk" href="https://vk.com/orientrt" target="_blank"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/img/icons/icons.svg#vk" alt=""></a><a class="socials__item socials__item--ig" href="https://www.instagram.com/orientrt/" target="_blank"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/img/icons/icons.svg#insta" alt=""></a></div>
-            <div class="butter"></div>
+            <div class="menu__item">
+              <a href="">Новости</a>
+            </div>
+            <div class="menu__item menu__item--withdrop">
+              <span>Портфолио</span>
+              <ul class="menu-drop">
+                <div class="menu-drop__container">
+                  <li class="menu-drop__item">
+                    <a href="">О себе</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Курсы повышения квалификации</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Обобщение педагогического опыта</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Мои достижения</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Достижения учащихся</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Фотоальбом</a>
+                  </li>
+                </div>                
+              </ul>
+            </div>
+            <div class="menu__item menu__item--withdrop">
+              <span>Полезное</span>
+              <ul class="menu-drop">
+                <div class="menu-drop__container">
+                  <li class="menu-drop__item menu-drop__item--withdrop">
+                    <a>Ученикам</a>
+                    <ul class="menu-drop menu-drop2">
+                      <li class="menu-drop__item">
+                        <a href="">Ссылка 1</a>
+                      </li>
+                      <li class="menu-drop__item">
+                        <a href="">Ссылка 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-drop__item menu-drop__item--withdrop">
+                    <a>Коллегам</a>
+                    <ul class="menu-drop menu-drop2">
+                      <li class="menu-drop__item">
+                        <a href="">Ссылка 1</a>
+                      </li>
+                      <li class="menu-drop__item">
+                        <a href="">Ссылка 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Родителям</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">ОГЭ</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">ЕГЭ</a>
+                  </li>
+                  <li class="menu-drop__item">
+                    <a href="">Медиатека</a>
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div class="menu__item">
+              <a href="">Методика</a>
+            </div>
+            <div class="menu__item">
+              <a href="">Нормативные документы</a>
+            </div>
+            <div class="menu__item">
+              <a href="">Отзывы</a>
+            </div>
+            <div class="menu__item">
+              <a href="">Контакты</a>
+            </div>
           </div>
         </div>
-      </header>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    

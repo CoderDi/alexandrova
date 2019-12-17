@@ -3,110 +3,191 @@
 Template Name: Frontpage
 */
 
-get_header();
-?>
-<?php $story = new WP_Query( array( 'post_type' => 'slide', 'posts_per_page' => 8 ) ); 
-									
-					if ( $story->have_posts() ) {?>
+get_header(); ?>
 
-		<section class="slider js-slider">
-			
-							<?php while ( $story->have_posts() ) : $story->the_post();?>
-								
-
-								<div class="slider__item" style="background: <?php the_field('color'); ?>">
-									<div class="wrapper">
-										<div class="slider__item_wrapper">
-											<div class="slider__item_content">
-												<h2 class="slider__item_title" style="color: <?php the_field('czvet_teksta'); ?>"><strong><?php the_title(); ?></strong><br><?php the_excerpt(); ?></h2>
-												<a class="btn slider__btn" href="<?php the_permalink(); ?>"><?php the_field('tekst_knopki'); ?></a>
-											</div>
-											<?php the_post_thumbnail("s slider__item_img slider__item_img--first"); ?>
-										</div>
-									</div>
-								</div>
-						
-							<?php endwhile;?>
-							<?php wp_reset_postdata(); ?>
-		</section>
-		<?php } ?>
-
-		<section class="news">
-			<div class="wrapper">
-				<div class="news__wrapper">
-					<h2 class="news__title">Новости</h2>
+		<div class="slider">
+      <div class="wrapper">
+        <div class="slider__wrapper js-slider">
+          <div class="slider__item">
+            <div class="slider__item_container"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/slide1.jpg" alt=""></div>
+          </div>
+          <div class="slider__item">
+            <div class="slider__item_container"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/slide2.jpg" alt=""></div>
+          </div>
+          <div class="slider__item">
+            <div class="slider__item_container"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/slide3.jpg" alt=""></div>
+          </div>
+          <div class="slider__item">
+            <div class="slider__item_container"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/slide4.jpg" alt=""></div>
+          </div>
+          <div class="slider__item">
+            <div class="slider__item_container"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/slide3.jpg" alt=""></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="main__wrapper">
+        <section class="content">
+					<div class="main__content">
+						<div class="photo"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/foto.jpg" alt=""></div>
+						<h2>Добро пожаловать на мой сайт!</h2>
+						<p>Я очень рада видеть Вас у себя в гостях!</p>
+						<p>Я надеюсь, что путешествие по сайту будет не только интересным, но и познавательным. На страничках моего сайта вы найдёте много полезной и интересной информации.</p>
+						<p>Буду рада знакомству, надеюсь на сотрудничество и общение с Вами, дорогие друзья!</p>
+        	</div>
+          
+          <div class="news__list">
+            <h2 class="news__list_title">Актуальные новости</h2>
+            <div class="news">
+              <h3 class="hews__title">Lorem ipsum dolor sit amet.</h3>
+              <div class="news__meta">
+                <span class="news__author">Admin</span>
+                <span class="news__date">11.01.2020</span>
+              </div>
+              <p class="news__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque natus, voluptatem, ipsum cum molestiae esse, corporis maxime aspernatur quisquam veritatis dolorem optio. Rem libero neque illum? Sed asperiores consequatur, aut tempore </p>
+              <div class="news__bottom">
+                <a href="" class="btn news__btn">Читать полностью</a>
+              </div>
+            </div>
+            <div class="news">
+              <h3 class="hews__title">Lorem ipsum dolor sit amet.</h3>
+              <div class="news__meta">
+                <span class="news__author">Admin</span>
+                <span class="news__date">11.01.2020</span>
+              </div>
+              <p class="news__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque natus, voluptatem, ipsum cum molestiae esse, corporis maxime aspernatur quisquam veritatis dolorem optio. Rem libero neque illum? Sed asperiores consequatur, aut tempore </p>
+              <div class="news__bottom">
+                <a href="" class="btn news__btn">Читать полностью</a>
+              </div>
+            </div>
+            <div class="news">
+              <h3 class="hews__title">Lorem ipsum dolor sit amet.</h3>
+              <div class="news__meta">
+                <span class="news__author">Admin</span>
+                <span class="news__date">11.01.2020</span>
+              </div>
+              <p class="news__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque natus, voluptatem, ipsum cum molestiae esse, corporis maxime aspernatur quisquam veritatis dolorem optio. Rem libero neque illum? Sed asperiores consequatur, aut tempore </p>
+              <div class="news__bottom">
+                <a href="" class="btn news__btn">Читать полностью</a>
+              </div>
+            </div>
+            <a href="" class="btn btn-more">Смотреть все новости</a>
+					</div>
 					
-					<?php $story = new WP_Query( array( 'post_type' => 'novosti','posts_per_page' => 8 ) ); 
-									
-					if ( $story->have_posts() ) {?>
-						<div class="news__list">
+          <div class="form">
+						<strong class="form__title">Уважаемые обучающиеся, родители и коллеги! <br> Жду ваших вопросов, пожеланий и предложений!</strong>
+						<form class="form__block">
+							<input type="text" class="input form__input" placeholder="Имя*" required>
+							<input type="email" class="input form__input" placeholder="E-mail*" required>
+							<textarea class="input textarea form__textarea" placeholder="Сообщение*" required></textarea>
+							<label class="check">
+								<input type="checkbox" checked>
+								<span class="check__custom"></span>
+								<span class="check__text">Я даю согласие на <a href="/privacy-policy" target="_blank">обработку персональных данных</a></span>
+							</label>
+							<input type="submit" class="submit form__submit" value="Отправить">
+						</form>
+					</div>
+        </section>
 
-							<?php while ( $story->have_posts() ) : $story->the_post();?>
-								<div class="news__item">
-									<a class="news__item_container" href="<?php the_permalink(); ?>">
-										<div class="news__item--img">
-											<?php the_post_thumbnail("news__item_img"); ?>
-										</div>
-										
-										<div class="news__item--content">
-											<span><?php the_date(); ?></span>
-											<strong><?php the_title(); ?></strong>
-										</div>
-									</a>
-								</div>
-						
-							<?php endwhile;?>
-							<?php wp_reset_postdata(); ?>
-						</div>
-						<a class="news__btn-more" href="/news">еще новости</a>
+        <aside class="sidebar">
+          <div class="sidebar__block">
+            <div class="sidebar__block_content">
+							<?php echo do_shortcode( '[bvi text="Версия сайта для слабовидящих"]' ); ?>
+            </div>
+          </div>
 
-						<?php } else {?>
-							<span class="calendar__item_date">Пока нет ни одной новости, скоро они здесь появятся...</span>
-						<?php } ?>
+          <div class="sidebar__block">
+            <strong class="sidebar__block_title">Поиск по сайту:</strong>
+            <div class="sidebar__block_content">
+              <form class="search-form">
+                <input type="text" class="input search-input" placeholder="Введите запрос...">
+                <input type="submit" value="" class="search-submit">
+              </form>
+            </div>
+          </div>
 
-				</div>
-			</div>
-		</section>
+          <div class="sidebar__block">
+            <strong class="sidebar__block_title">Последние комментарии</strong>
+            <div class="sidebar__block_content">
+              <div class="sidebar-comment">
+                <a href="" class="sidebar-comment__author">Admin</a> к записи
+                <a href="" class="sidebar-comment__title">Рада приветствовать Вас на моем сайте</a>
+              </div>
+              <div class="sidebar-comment">
+                <a href="" class="sidebar-comment__author">Admin</a> к записи
+                <a href="" class="sidebar-comment__title">Рада приветствовать Вас на моем сайте</a>
+              </div>
+            </div>
+          </div>
 
-		<section class="calendar"><img class="shape calendar__shape1" src="<?php echo  get_stylesheet_directory_uri(); ?>/img/shape1.svg" alt=""><img class="shape calendar__shape2" src="<?php echo  get_stylesheet_directory_uri(); ?>/img/shape2.svg" alt="">
-			<div class="wrapper">
-				<div class="calendar__wrapper">
-					<h2 class="calendar__title">Соревнования ФСО РТ</h2>
+          <div class="sidebar__block">
+            <strong class="sidebar__block_title">Календарь</strong>
+            <div class="sidebar__block_content">
+              <div class="datepicker-here"></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+      
+      
 
-					<?php $story = new WP_Query( array( 
-						'post_type' => 'sorevnovanie',
-						'posts_per_page' => 6,
-						'meta_key' => 'doc_year', // то самое поле
-						'orderby'  => 'meta_value_num',
-						'order'    => 'DESC' 
-						) ); 
-									
-					if ( $story->have_posts() ) {?>
-						<div class="calendar__list">
+      <div class="partners__container">
+        <h2 class="partners__title">Полезные ссылки</h2>
+        <div class="partners">
+          <a href="https://edu.gov.ru/" class="partner" target="_blank">
+            <div class="partner__container">
+              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/minprorf.png" alt="">
+              <strong>Министерство просвещения РФ</strong>
+            </div>
+          </a>
+          <a href="https://minobr.nso.ru/" class="partner" target="_blank">
+            <div class="partner__container">
+              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/minobr.png" alt="">
+              <strong>Министерство образования НСО</strong>
+            </div>
+          </a>
+          <a href="http://s_2.kuyby.edu54.ru/" class="partner" target="_blank">
+            <div class="partner__container">
+              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/sosh2.png" alt="">
+              <strong>МБОУ СОШ №2</strong>
+            </div>
+          </a>
+          <a href="http://kuibyshev.nso.ru/" class="partner" target="_blank">
+            <div class="partner__container">
+              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/raion.png" alt="">
+              <strong>Администрация Куйбышевского района Новосибирской области</strong>
+            </div>
+          </a>
+          <a href="http://www.ege.edu.ru/ru/" class="partner" target="_blank">
+            <div class="partner__container">
+              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/ege-edu.jpg" alt="">
+              <strong>Официальный информационный портал единого государственного экзамена </strong>
+            </div>
+          </a>
+          <a href="http://www.edu.ru/" class="partner">
+            <div class="partner__container">
+              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/edu.png" alt="">
+              <strong>Федеральный портал <br> Российское образование</strong>
+            </div>
+          </a>
+          <a href="http://www.ug.ru/" class="partner">
+            <div class="partner__container">
+              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/ug.png" alt="">
+              <strong>Учительская газета</strong>
+            </div>
+          </a>
+          <a href="http://fipi.ru/" class="partner">
+            <div class="partner__container">
+              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/fipi.png" alt="">
+              <strong>Федеральный институт педагогических измерений</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+      
 
-							<?php while ( $story->have_posts() ) : $story->the_post();?>
+    </div>
 
-							<div class="calendar__item">
-								<a class="calendar__item_container" href="<?php the_permalink(); ?>">
-									<div class="calendar__item_icon">
-										<img src="<?php echo  get_stylesheet_directory_uri(); ?>/img/icons/icons.svg#logo" alt="">
-									</div>
-									<span class="calendar__item_date"> Дата: <?php the_field('doc_year'); ?></span>
-									<h3 class="calendar__item_title"><?php the_title(); ?></h3>
-									<div class="btn calendar__item_btn">УЗНАТЬ БОЛЬШЕ</div>
-								</a>
-							</div>
-						
-							<?php endwhile;?>
-							<?php wp_reset_postdata(); ?>
-						</div>
-
-						<?php } else {?>
-							<span class="calendar__item_date">Пока нет ни одной новости, скоро они здесь появятся...</span>
-						<?php } ?>
-
-				</div>
-			</div>
-		</section>
-<?php
-get_footer();
+<?php get_footer(); ?>

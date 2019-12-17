@@ -1,24 +1,8 @@
 <?php
 /**
- * Tatorient functions and definitions
+ * Teacher functions and definitions
  *
  */
-
-
- /**
- * Enqueue scripts and styles.
- *
- */
-function tatorient_scripts() {
-	
-	
-	// Load our main stylesheet.
-	wp_enqueue_style( 'tatorient-style', get_stylesheet_uri() );
-  wp_enqueue_script( 'libs-script', get_template_directory_uri() . '/js/libs.min.js', array(), '', true );
-  wp_enqueue_script( 'common-script', get_template_directory_uri() . '/js/common.min.js', array(), '', true );
-
-}
-add_action( 'wp_enqueue_scripts', 'tatorient_scripts' );
 
 
 
@@ -27,11 +11,6 @@ add_action( 'init', 'true_register_post_type_init' ); // Использоват�
  
 function true_register_post_type_init() {
 	
-	
-
-	
-	
-
 
 	$labels = array(
 		'name' => 'События',
@@ -107,52 +86,6 @@ add_filter( 'wpcf7_autop_or_not', '__return_false' );
 remove_filter( 'the_content', 'wpautop' );// для контента
 remove_filter( 'the_excerpt', 'wpautop' );// для анонсов
 remove_filter( 'comment_text', 'wpautop' );// для комментарий
-
-
-
-
-/* Подсчет количества посещений страниц
----------------------------------------------------------- */
-add_action('wp_head', 'kama_postviews');
-function kama_postviews() {
-
-/* ------------ Настройки -------------- */
-$meta_key       = 'views';  // Ключ мета поля, куда будет записываться количество просмотров.
-$who_count      = 1;            // Чьи посещения считать? 0 - Всех. 1 - Только гостей. 2 - Только зарегистрированных пользователей.
-$exclude_bots   = 1;            // Исключить ботов, роботов, пауков и прочую нечесть :)? 0 - нет, пусть тоже считаются. 1 - да, исключить из подсчета.
-
-global $user_ID, $post;
-	if(is_singular()) {
-		$id = (int)$post->ID;
-		static $post_views = false;
-		if($post_views) return true; // чтобы 1 раз за поток
-		$post_views = (int)get_post_meta($id,$meta_key, true);
-		$should_count = false;
-		switch( (int)$who_count ) {
-			case 0: $should_count = true;
-				break;
-			case 1:
-				if( (int)$user_ID == 0 )
-					$should_count = true;
-				break;
-			case 2:
-				if( (int)$user_ID > 0 )
-					$should_count = true;
-				break;
-		}
-		if( (int)$exclude_bots==1 && $should_count ){
-			$useragent = $_SERVER['HTTP_USER_AGENT'];
-			$notbot = "Mozilla|Opera"; //Chrome|Safari|Firefox|Netscape - все равны Mozilla
-			$bot = "Bot/|robot|Slurp/|yahoo"; //Яндекс иногда как Mozilla представляется
-			if ( !preg_match("/$notbot/i", $useragent) || preg_match("!$bot!i", $useragent) )
-				$should_count = false;
-		}
-
-		if($should_count)
-			if( !update_post_meta($id, $meta_key, ($post_views+1)) ) add_post_meta($id, $meta_key, 1, true);
-	}
-	return true;
-}
 
 
 
@@ -317,14 +250,6 @@ function kama_pagenavi( $args = array(), $wp_query = null ){
 
 
 
-
-
-// function search_filter($query) {
-// 	if ( !is_admin() && $query->is_main_query() ) {
-// 	if ($query->is_search) {
-// 	$query->set('post_type', array( 'post', 'news', 'documents', 'sorevnovanie' ) );
-// 	}}}
-// 	add_action('pre_get_posts','search_filter');
 
 function wp_corenavi($wp_query=null) { // функция вывода пагинации
 	if (!is_object($wp_query)) {
