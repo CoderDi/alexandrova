@@ -401,6 +401,39 @@ html body .bvi-button .bvi-link:hover {
   display: block;
   /* background: #000; */
 }
+input[type="submit"]:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+.wpcf7-response-output {
+  width: 100%;
+}
+.polls__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.polls__list ul li {
+  margin-bottom: 10px;
+  color: #113255;
+}
+.sidebar__block_polls {
+  color: #113255;
+}
+.sidebar__block_polls ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar__block_polls a {
+  color: #0099cc;
+  display: block;
+  text-align: center;
+}
+.wp-polls > p {
+  margin: 0 0 20px;
+  font-size: 18px;
+  color: #113255;
+}
 .photo {
   background: #eee;
   margin: 0 20px 20px 0;
@@ -414,22 +447,30 @@ html body .bvi-button .bvi-link:hover {
 .content p {
   margin: 0 0 15px;
 }
-.sidebar-comment {
+.sidebar-comment,
+.recent-comments li {
   padding-bottom: 15px;
   margin-bottom: 15px;
   border-bottom: 1px solid #ddd;
   color: #333;
+}
+.recent-comments {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 .sidebar-comment:last-child {
   padding: 0;
   margin: 0;
   border: none;
 }
-.sidebar-comment__author {
+.sidebar-comment__author,
+.recent-comments li b {
   color: #113255;
   font-weight: 500;
 }
-.sidebar-comment__title {
+.sidebar-comment__title,
+.recent-comments li a {
   color: #0099cc;
 }
 .sidebar-comment a:hover {

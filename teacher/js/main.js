@@ -30,4 +30,13 @@ $(document).ready(function(){
     arrows: true,
     slidesToShow: 5
   });
+
+
+  $('form input[type="checkbox"]').change(function () {
+    if ($(this).is(":checked")) {
+        $(this).parents("form").find("input[type='submit']").attr("disabled", false);
+    } else {
+        $(this).parents("form").find("input[type='submit']").attr("disabled", true);
+    }
+  });
 });

@@ -39,55 +39,36 @@ get_header(); ?>
           
           <div class="news__list">
             <h2 class="news__list_title">Актуальные новости</h2>
-            <div class="news">
-              <h3 class="hews__title">Lorem ipsum dolor sit amet.</h3>
-              <div class="news__meta">
-                <span class="news__author">Admin</span>
-                <span class="news__date">11.01.2020</span>
+
+            <?php $story = new WP_Query( array( 'post_type' => 'post','posts_per_page' => 3 ) ); 
+									
+            if ( $story->have_posts() ) {?>
+              <?php while ( $story->have_posts() ) : $story->the_post();?>
+                  
+              <div class="news">
+                <h3 class="hews__title"><?php the_title(); ?></h3>
+                <div class="news__meta">
+                  <span class="news__author"><?php the_author(); ?></span>
+                  <span class="news__date"><?php the_date(); ?></span>
+                </div>
+                <p class="news__text"><?php the_excerpt(); ?></p>
+                <div class="news__bottom">
+                  <a href="<?php the_permalink(); ?>" class="btn news__btn">Читать полностью</a>
+                </div>
               </div>
-              <p class="news__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque natus, voluptatem, ipsum cum molestiae esse, corporis maxime aspernatur quisquam veritatis dolorem optio. Rem libero neque illum? Sed asperiores consequatur, aut tempore </p>
-              <div class="news__bottom">
-                <a href="" class="btn news__btn">Читать полностью</a>
-              </div>
-            </div>
-            <div class="news">
-              <h3 class="hews__title">Lorem ipsum dolor sit amet.</h3>
-              <div class="news__meta">
-                <span class="news__author">Admin</span>
-                <span class="news__date">11.01.2020</span>
-              </div>
-              <p class="news__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque natus, voluptatem, ipsum cum molestiae esse, corporis maxime aspernatur quisquam veritatis dolorem optio. Rem libero neque illum? Sed asperiores consequatur, aut tempore </p>
-              <div class="news__bottom">
-                <a href="" class="btn news__btn">Читать полностью</a>
-              </div>
-            </div>
-            <div class="news">
-              <h3 class="hews__title">Lorem ipsum dolor sit amet.</h3>
-              <div class="news__meta">
-                <span class="news__author">Admin</span>
-                <span class="news__date">11.01.2020</span>
-              </div>
-              <p class="news__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque natus, voluptatem, ipsum cum molestiae esse, corporis maxime aspernatur quisquam veritatis dolorem optio. Rem libero neque illum? Sed asperiores consequatur, aut tempore </p>
-              <div class="news__bottom">
-                <a href="" class="btn news__btn">Читать полностью</a>
-              </div>
-            </div>
-            <a href="" class="btn btn-more">Смотреть все новости</a>
+						
+							<?php endwhile;?>
+							<?php wp_reset_postdata(); ?>
+            <a href="/news" class="btn btn-more">Смотреть все новости</a>
+
+						<?php } else {?>
+							<span class="calendar__item_date">Пока нет ни одной новости, скоро они здесь появятся...</span>
+            <?php } ?>
 					</div>
 					
           <div class="form">
 						<strong class="form__title">Уважаемые обучающиеся, родители и коллеги! <br> Жду ваших вопросов, пожеланий и предложений!</strong>
-						<form class="form__block">
-							<input type="text" class="input form__input" placeholder="Имя*" required>
-							<input type="email" class="input form__input" placeholder="E-mail*" required>
-							<textarea class="input textarea form__textarea" placeholder="Сообщение*" required></textarea>
-							<label class="check">
-								<input type="checkbox" checked>
-								<span class="check__custom"></span>
-								<span class="check__text">Я даю согласие на <a href="/privacy-policy" target="_blank">обработку персональных данных</a></span>
-							</label>
-							<input type="submit" class="submit form__submit" value="Отправить">
-						</form>
+						<?php echo do_shortcode( '[contact-form-7 id="7" title="Контактная форма 1" html_class="form__block"]'); ?>
 					</div>
         </section>
 
@@ -111,14 +92,9 @@ get_header(); ?>
           <div class="sidebar__block">
             <strong class="sidebar__block_title">Последние комментарии</strong>
             <div class="sidebar__block_content">
-              <div class="sidebar-comment">
-                <a href="" class="sidebar-comment__author">Admin</a> к записи
-                <a href="" class="sidebar-comment__title">Рада приветствовать Вас на моем сайте</a>
-              </div>
-              <div class="sidebar-comment">
-                <a href="" class="sidebar-comment__author">Admin</a> к записи
-                <a href="" class="sidebar-comment__title">Рада приветствовать Вас на моем сайте</a>
-              </div>
+              <ul class="recent-comments">
+                <?php kama_recent_comments("limit=10&ex=40"); ?>
+              </ul>
             </div>
           </div>
 
@@ -126,6 +102,16 @@ get_header(); ?>
             <strong class="sidebar__block_title">Календарь</strong>
             <div class="sidebar__block_content">
               <div class="datepicker-here"></div>
+            </div>
+          </div>
+
+          <div class="sidebar__block sidebar__block_polls">
+            <div class="sidebar__block_content">
+              <?php if ( function_exists( 'vote_poll' ) && ! in_pollarchive() ): ?>
+                <ul class="polls__list">
+                    <li><?php get_poll();?></li>
+                </ul>
+              <?php endif; ?>
             </div>
           </div>
         </aside>
@@ -136,54 +122,22 @@ get_header(); ?>
       <div class="partners__container">
         <h2 class="partners__title">Полезные ссылки</h2>
         <div class="partners">
-          <a href="https://edu.gov.ru/" class="partner" target="_blank">
-            <div class="partner__container">
-              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/minprorf.png" alt="">
-              <strong>Министерство просвещения РФ</strong>
-            </div>
-          </a>
-          <a href="https://minobr.nso.ru/" class="partner" target="_blank">
-            <div class="partner__container">
-              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/minobr.png" alt="">
-              <strong>Министерство образования НСО</strong>
-            </div>
-          </a>
-          <a href="http://s_2.kuyby.edu54.ru/" class="partner" target="_blank">
-            <div class="partner__container">
-              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/sosh2.png" alt="">
-              <strong>МБОУ СОШ №2</strong>
-            </div>
-          </a>
-          <a href="http://kuibyshev.nso.ru/" class="partner" target="_blank">
-            <div class="partner__container">
-              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/raion.png" alt="">
-              <strong>Администрация Куйбышевского района Новосибирской области</strong>
-            </div>
-          </a>
-          <a href="http://www.ege.edu.ru/ru/" class="partner" target="_blank">
-            <div class="partner__container">
-              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/ege-edu.jpg" alt="">
-              <strong>Официальный информационный портал единого государственного экзамена </strong>
-            </div>
-          </a>
-          <a href="http://www.edu.ru/" class="partner">
-            <div class="partner__container">
-              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/edu.png" alt="">
-              <strong>Федеральный портал <br> Российское образование</strong>
-            </div>
-          </a>
-          <a href="http://www.ug.ru/" class="partner">
-            <div class="partner__container">
-              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/ug.png" alt="">
-              <strong>Учительская газета</strong>
-            </div>
-          </a>
-          <a href="http://fipi.ru/" class="partner">
-            <div class="partner__container">
-              <img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/fipi.png" alt="">
-              <strong>Федеральный институт педагогических измерений</strong>
-            </div>
-          </a>
+
+        <?php $story = new WP_Query( array( 'post_type' => 'partners', 'posts_per_page' => 100 ) ); 
+									
+					if ( $story->have_posts() ) {?>
+
+		      <?php while ( $story->have_posts() ) : $story->the_post();?>		
+
+            <a href="<?php the_field('link'); ?>" class="partner" target="_blank">
+              <div class="partner__container">
+              <?php the_post_thumbnail(); ?>
+                <strong><?php the_title(); ?></strong>
+              </div>
+            </a>
+        
+          <?php endwhile;
+            wp_reset_postdata(); } ?>
         </div>
       </div>
       

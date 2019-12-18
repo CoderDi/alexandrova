@@ -4,7 +4,11 @@
  *
  */
 
+add_filter('wpcf7_form_elements', function($content) {
+	$content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
 
+	return $content;
+});
 
 
 add_action( 'init', 'true_register_post_type_init' ); // Использовать функцию только внутри хука init
@@ -317,26 +321,18 @@ function true_option_settings() {
 	$true_field_params = array(
 		'type'      => 'text', // тип
 		'id'        => 'my_phone',
-		'desc'      => 'Телефон на странице Контакты', // описание
+		'desc'      => 'Телефон', // описание
 		'label_for' => 'my_phone' // позволяет сделать название настройки лейблом (если не понимаете, что это, можете не использовать), по идее должно быть одинаковым с параметром id
 	);
 	add_settings_field( 'my_phone_field', 'Телефон', 'true_option_display_settings', $true_page, 'true_section_1', $true_field_params );
 
 	$true_field_params = array(
 		'type'      => 'text', // тип
-		'id'        => 'my_vk',
-		'desc'      => 'Вконтакте', // описание
-		'label_for' => 'my_vk' // позволяет сделать название настройки лейблом (если не понимаете, что это, можете не использовать), по идее должно быть одинаковым с параметром id
+		'id'        => 'my_email',
+		'desc'      => 'Email', // описание
+		'label_for' => 'my_email' // позволяет сделать название настройки лейблом (если не понимаете, что это, можете не использовать), по идее должно быть одинаковым с параметром id
 	);
-	add_settings_field( 'my_vk_field', 'Вконтакте', 'true_option_display_settings', $true_page, 'true_section_1', $true_field_params );
- 
-	$true_field_params = array(
-		'type'      => 'text', // тип
-		'id'        => 'my_ig',
-		'desc'      => 'Инстаграм', // описание
-		'label_for' => 'my_ig' // позволяет сделать название настройки лейблом (если не понимаете, что это, можете не использовать), по идее должно быть одинаковым с параметром id
-	);
-	add_settings_field( 'my_ig_field', 'Инстаграм', 'true_option_display_settings', $true_page, 'true_section_1', $true_field_params );
+	add_settings_field( 'my_email_field', 'Email', 'true_option_display_settings', $true_page, 'true_section_1', $true_field_params );
  
 	
 	
@@ -377,4 +373,106 @@ function true_validate_settings($input) {
 		*/
 	}
 	return $valid_input;
+}
+
+
+
+
+
+/**
+ * Функция для вывода последних комментариев в WordPress. 
+ * ver: 0.1
+ */
+function kama_recent_comments( $args = array() ){
+	global $wpdb;
+
+	$def = array(
+		'limit'      => 10, // сколько комментов выводить.
+		'ex'         => 45, // n символов. Обрезка текста комментария.
+		'term'       => '', // id категорий/меток. Включить(5,12,35) или исключить(-5,-12,-35) категории. По дефолту - из всех категорий.
+		'gravatar'   => '', // Размер иконки в px. Показывать иконку gravatar. '' - не показывать.
+		'user'       => '', // id юзеров. Включить(5,12,35) или исключить(-5,-12,-35) комменты юзеров. По дефолту - все юзеры.
+		'echo'       => 1,  // выводить на экран (1) или возвращать (0).
+		'comm_type'  => '', // название типа комментария
+		'meta_query' => '', // WP_Meta_Query
+		'meta_key'   => '', // WP_Meta_Query
+		'meta_value' => '', // WP_Meta_Query
+		'url_patt'   => '', // оптимизация ссылки на коммент. Пр: '%s?comments#comment-%d' плейсхолдеры будут заменены на $post->guid и $comment->comment_ID
+	);
+
+	$args = wp_parse_args( $args, $def );
+	extract( $args );
+
+	$AND = '';
+
+	// ЗАПИСИ
+	if( $term ){
+		$cats = explode(',', $term );
+		$cats = array_map('intval', $cats );
+
+		$CAT_IN = ( $cats[ key($cats) ] > 0 ); // из категорий или нет
+
+		$cats = array_map('absint', $cats ); // уберем минусы
+		$AND_term_id = 'AND term_id IN ('. implode(',', $cats) .')';
+
+		$posts_sql = "SELECT object_id FROM $wpdb->term_relationships rel LEFT JOIN $wpdb->term_taxonomy tax ON (rel.term_taxonomy_id = tax.term_taxonomy_id) WHERE 1 $AND_term_id ";
+
+		$AND .= ' AND comment_post_ID '. ($CAT_IN ? 'IN' : 'NOT IN') .' ('. $posts_sql .')';
+	}
+
+	// ЮЗЕРЫ
+	if( $user ){
+		$users = explode(',', $user );
+		$users = array_map('intval', $users );
+
+		$USER_IN = ( $users[ key($users) ] > 0 );
+
+		$users = array_map('absint', $users );
+
+		$AND .= ' AND user_id '. ($USER_IN ? 'IN' : 'NOT IN') .' ('. implode(',', $users) .')';
+	}
+
+	// WP_Meta_Query
+	$META_JOIN = '';
+	if( $meta_query || $meta_key || $meta_value ){
+		$mq = new WP_Meta_Query( $args );
+		$mq->parse_query_vars( $args );
+		if( $mq->queries ){
+			$mq_sql = $mq->get_sql('comment', $wpdb->comments, 'comment_ID' );
+			$META_JOIN = $mq_sql['join'];
+			$AND .= $mq_sql['where'];
+		}
+	}
+
+	$sql = $wpdb->prepare("SELECT * FROM $wpdb->comments LEFT JOIN $wpdb->posts ON (ID = comment_post_ID ) $META_JOIN
+	WHERE comment_approved = '1' AND comment_type = %s $AND ORDER BY comment_date_gmt DESC LIMIT %d", $comm_type, $limit );
+
+	//die( $sql );  
+	$results = $wpdb->get_results( $sql );
+
+	if( ! $results ) return 'Комментариев нет.';
+
+	// HTML
+	$out = $grava = '';
+	foreach ( $results as $comm ){
+		if( $gravatar )
+			$grava = get_avatar( $comm->comment_author_email, $gravatar );
+
+		$comtext = strip_tags( $comm->comment_content );
+		$com_url = $url_patt ? sprintf( $url_patt, $comm->guid, $comm->comment_ID ) : get_comment_link( $comm->comment_ID );
+
+		$leight = (int) mb_strlen( $comtext );
+		if( $leight > $ex )
+			$comtext = mb_substr( $comtext, 0, $ex ) .' …';
+
+		$out .= '
+		<li>
+			'. $grava .' <b>'. strip_tags( $comm->comment_author ) .':</b> 
+			<a href="'. $com_url .'" title="к записи: '. esc_attr( $comm->post_title ) .'">'. $comtext .'</a>
+		</li>';
+	}
+
+	if( $echo )
+		return print $out;
+	return $out;
 }

@@ -23,8 +23,9 @@
     <div class="header-top">
       <div class="wrapper">
         <div class="header-top__wrapper">
-          <a href="mailto:email@mail.ru" class="header__mail">alexandrovaza@mail.ru</a>
-          <a href="tel:8-383-62-00-000" class="header__phone">8-383-62-00-000</a>
+          <?php $all_options = get_option('true_options'); ?>
+          <a href="mailto:<?php echo $all_options['my_email']; ?>" class="header__mail"><?php echo $all_options['my_email']; ?></a>
+          <a href="tel:<?php echo $all_options['my_phone']; ?>" class="header__phone"><?php echo $all_options['my_phone']; ?></a>
         </div>
       </div>
     </div>
