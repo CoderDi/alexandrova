@@ -413,6 +413,15 @@ input[type="submit"]:disabled {
   padding: 0;
   list-style: none;
 }
+.wp-polls-ans input[type=button] {
+  background-color: #09c;
+  color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+}
+.wp-polls-ans input[type=button]:hover {
+  background-color: #113255;
+}
 .polls__list ul li {
   margin-bottom: 10px;
   color: #113255;

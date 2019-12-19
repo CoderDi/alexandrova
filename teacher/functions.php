@@ -81,7 +81,7 @@ function true_register_post_type_init() {
 		}
 
 		register_nav_menus( array(
-			'footer_menu' => 'Меню в подвале'
+			'main_menu' => 'Главное меню'
 		) );
 
 
@@ -476,3 +476,10 @@ function kama_recent_comments( $args = array() ){
 		return print $out;
 	return $out;
 }
+
+
+
+
+
+
+
