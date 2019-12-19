@@ -8,6 +8,7 @@
 <html lang="ru">
 <head>
   <title><?php bloginfo('name'); ?></title>
+  <meta name="description" content="Добро пожаловать на персональный сайт учителя математики" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
@@ -26,6 +27,14 @@
           <?php $all_options = get_option('true_options'); ?>
           <a href="mailto:<?php echo $all_options['my_email']; ?>" class="header__mail"><?php echo $all_options['my_email']; ?></a>
           <a href="tel:<?php echo $all_options['my_phone']; ?>" class="header__phone"><?php echo $all_options['my_phone']; ?></a>
+          
+          <?php if ( is_user_logged_in() ) { 
+            $current_user = wp_get_current_user();
+                echo '<a href="http://alexandrovazoya.ru/wp-admin/profile.php" class="user-name">' . $current_user->user_login . '</a>';?>
+            <a href="<?php echo wp_logout_url(); ?>" class="user-logout">Выход</a>
+          <?php } else { ?>
+            <a class="lrm-login lrm-hide-if-logged-in">Вход/Регистрация</a>
+          <?php } ?>
         </div>
       </div>
     </div>
@@ -37,99 +46,10 @@
     <div class="header-bottom">
       <nav class="menu">
         <div class="wrapper">
-          <div class="menu__wrapper flex">
-            <div class="menu__item menu__item--withdrop">
-              <a href="">Главная</a>
-              <ul class="menu-drop">
-                <div class="menu-drop__container">
-                  <li class="menu-drop__item">
-                    <a href="">Карта сайта</a>
-                  </li>
-                </div>                
-              </ul>
-            </div>
-            <div class="menu__item">
-              <a href="">Новости</a>
-            </div>
-            <div class="menu__item menu__item--withdrop">
-              <span>Портфолио</span>
-              <ul class="menu-drop">
-                <div class="menu-drop__container">
-                  <li class="menu-drop__item">
-                    <a href="">О себе</a>
-                  </li>
-                  <li class="menu-drop__item">
-                    <a href="">Курсы повышения квалификации</a>
-                  </li>
-                  <li class="menu-drop__item">
-                    <a href="">Обобщение педагогического опыта</a>
-                  </li>
-                  <li class="menu-drop__item">
-                    <a href="">Мои достижения</a>
-                  </li>
-                  <li class="menu-drop__item">
-                    <a href="">Достижения учащихся</a>
-                  </li>
-                  <li class="menu-drop__item">
-                    <a href="">Фотоальбом</a>
-                  </li>
-                </div>                
-              </ul>
-            </div>
-            <div class="menu__item menu__item--withdrop">
-              <span>Полезное</span>
-              <ul class="menu-drop">
-                <div class="menu-drop__container">
-                  <li class="menu-drop__item menu-drop__item--withdrop">
-                    <a>Ученикам</a>
-                    <ul class="menu-drop menu-drop2">
-                      <li class="menu-drop__item">
-                        <a href="">Ссылка 1</a>
-                      </li>
-                      <li class="menu-drop__item">
-                        <a href="">Ссылка 2</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="menu-drop__item menu-drop__item--withdrop">
-                    <a>Коллегам</a>
-                    <ul class="menu-drop menu-drop2">
-                      <li class="menu-drop__item">
-                        <a href="">Ссылка 1</a>
-                      </li>
-                      <li class="menu-drop__item">
-                        <a href="">Ссылка 2</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="menu-drop__item">
-                    <a href="">Родителям</a>
-                  </li>
-                  <li class="menu-drop__item">
-                    <a href="">ОГЭ</a>
-                  </li>
-                  <li class="menu-drop__item">
-                    <a href="">ЕГЭ</a>
-                  </li>
-                  <li class="menu-drop__item">
-                    <a href="">Медиатека</a>
-                  </li>
-                </div>
-              </ul>
-            </div>
-            <div class="menu__item">
-              <a href="">Методика</a>
-            </div>
-            <div class="menu__item">
-              <a href="">Нормативные документы</a>
-            </div>
-            <div class="menu__item">
-              <a href="">Отзывы</a>
-            </div>
-            <div class="menu__item">
-              <a href="">Контакты</a>
-            </div>
-          </div>
+        <?php
+          wp_nav_menu( [
+            'theme_location' => 'header-menu',
+          ] );?>
         </div>
       </nav>
     </div>

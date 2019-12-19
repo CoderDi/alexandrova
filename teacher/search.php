@@ -12,64 +12,45 @@
 get_header();
 ?>
 
+<div class="wrapper">
+	<div class="main__wrapper">
+		<section class="content">
+    <?php echo wpcourses_breadcrumb( ' / ' ); ?>
+			<h2><?php echo 'Результат поиска: ' . '<span>' . get_search_query() . '</span>'; ?></h2>
+			
+			<?php
+      if ( have_posts() ) { ?>
+        
+        <div class="news__list">
 
-<?php
-	$s=get_search_query();
-	$args = array(
-		's' =>$s,
-		'post_type' => $_GET['ptype'],
-		'category_name' => $_GET['category'],
-		'relation' => 'AND', 
-		'posts_per_page' => 100,
-		'meta_query' => array()
-	);
-	if( ! empty( $_GET['doc_year'] ) )
-		$args['meta_query'][] = array(
-			'key' => 'doc_year',
-			'value' => $_GET['doc_year']
-		);
-    // The Query
-$the_query = new WP_Query( $args );
-if ( $the_query->have_posts() ) {
-				_e("<h2 style='font-weight:bold;color:#000;margin:0 0 20px 0'>Результаты поиска для: ".get_query_var('s')."</h2>");?>
-				<div class="docs__list">
-        <?php while ( $the_query->have_posts() ) {
-					 $the_query->the_post();
-                 ?>
-								 <?php $post_type = get_post_type( $post_id ) ?> 
-									<? if ($post_type == 'documents') { ?>
-										<a class="file file-doc flex" href="<?php the_field('doc_file'); ?>"><i></i><span><?php the_title(); ?></span></a>
-								<?php	} 
-									elseif ($post_type == 'sorevnovanie')  {?>
-									
-									<div class="news__item">
-									<a class="news__item_container" href="<?php the_permalink(); ?>">
-										<div class="news__item--img">
-											<?php the_post_thumbnail("news__item_img"); ?>
-										</div>
-										
-										<div class="news__item--content">
-											<span><?php the_date(); ?></span>
-											<strong><?php the_title(); ?></strong>
-										</div>
-									</a>
-								</div>
+				<?php while ( have_posts() ) {
+					the_post();
+            ?>
 
-									<?php }
-									
-									else {?>
-                    <li>
-                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                    </li>
-									<?php }
-				}?>
+            <div class="news">
+              <h3 class="hews__title"><?php the_title(); ?></h3>
+              <div class="news__meta">
+                <span class="news__author"><?php the_author(); ?></span>
+                <span class="news__date"><?php the_date(); ?></span>
+              </div>
+              <p class="news__text"><?php the_excerpt(); ?></p>
+              <div class="news__bottom">
+                <a href="<?php the_permalink(); ?>" class="btn news__btn">Читать полностью</a>
+              </div>
+            </div>
+            
+          <?php } ?>
 				</div>
-    <?php }else{
-?>
-        <h2 style='font-weight:bold;color:#000'>Ничего не найдено!</h2>
-        <div class="alert alert-info">
-          <p>Измените критерии поиска</p>
-        </div>
-<?php } ?>
+			<?php }
+				else {
+				echo "<p>Извините по Вашему результату ничего не найдено</p>";
+				} ?>
+		</section>
+		
+		<?php get_template_part( 'sidebar' ); ?>
+
+	</div>
+</div>
+
 <?php
 get_footer();

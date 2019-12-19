@@ -89,6 +89,11 @@ body {
 .header-bottom {
   height: 45px;
 }
+.menu__wrapper {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 .menu__item {
   position: relative;
   font-size: 16px;
@@ -125,6 +130,9 @@ body {
   top: -webkit-calc(50% - 12px);
   top: calc(50% - 12px);
   /* content: ''; */
+}
+.menu__item:last-child::after {
+  display: none;
 }
 .menu__item a {
   color: #ffffff;
@@ -170,19 +178,25 @@ body {
   opacity: 1;
   visibility: visible;
 }
-.menu-drop__item {
+.menu-drop__item,
+.menu-drop .menu__item {
   position: relative;
+  text-align: left;
+  display: block;
+  height: auto;
 }
 .menu-drop__item:hover .menu-drop2 {
   opacity: 1;
   visibility: visible;
 }
-.menu-drop__item a {
+.menu-drop__item a,
+.menu-drop .menu__item a {
   display: block;
   padding: 10px 15px;
   background-color: #09C;
 }
-.menu-drop__item a:hover {
+.menu-drop__item a:hover,
+.menu-drop .menu__item a:hover {
   background-color: rgb(0, 122, 163);
 }
 .menu-drop__item--withdrop > a::after {
@@ -242,12 +256,19 @@ body {
   margin-right: 40px;
 }
 .header__phone {
+  position: relative;
+  margin-right: 40px;
   background: url(images/phone.svg) no-repeat center left;
   -webkit-background-size: 17px 17px;
           background-size: 17px 17px;
   padding-left: 23px;
 }
-.header__mail::after {
+.user-logout {
+  font-size: 12px;
+  padding-left: 20px;
+}
+.header__mail::after,
+.header__phone::after {
   position: absolute;
   display: inline-block;
   height: 17px;
@@ -796,6 +817,24 @@ overflow: hidden;
   padding: 5px 15px;
   -webkit-border-radius: 5px;
           border-radius: 5px;
+          cursor: pointer;
+}
+.wpcourses-breadcrumbs {
+  color: #113255;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.wpcourses-breadcrumbs a,
+.wsp-container a {
+  color: #0099cc;
+}
+.wpcourses-breadcrumbs a:hover,
+.wsp-container a:hover {
+  text-decoration: underline;
+}
+.comments__btn--center {
+  text-align: center;
 }
 .btn:hover {
   background: #113255;

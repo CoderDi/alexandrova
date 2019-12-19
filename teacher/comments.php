@@ -9,7 +9,9 @@
 ?>
 
 <section class="comments">
-  <div class="comments__btn--center"><span class="btn comments__btn js-auth">оставить комментарий</span></div>
+  <div class="comments__btn--center">
+    <h2 class="comments__btn">Оставить комментарий</h2>
+  </div>
               
     <?php echo do_shortcode( '[anycomment]' ); ?>
 

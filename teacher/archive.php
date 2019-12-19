@@ -3,47 +3,39 @@
 
 get_header();
 ?>
-      <section class="page news-page">
-        <div class="wrapper">
-          <div class="page__wrapper">
-            <h2 class="news__title">Новости</h2>
-            <?php 
-            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            $story = new WP_Query( array( 'post_type' => 'novosti', 'posts_per_page' => 10, 'paged' => $paged ) ); 
-									
-					  if ( $story->have_posts() ) {?>
-              <div class="news-page__list">
-                <?php while ( $story->have_posts() ) : $story->the_post();?>
-                  
-                  <div class="news-page__item">
-                    <div class="news-page__item_img">
-                    <?php the_post_thumbnail(); ?>
-                    </div>
-                    <div class="news-page__item_content">
-                      <h3 class="news-page__item_title"><?php the_title(); ?></h3>
-                      <div class="news-page__item_metas">
-                        <span class="news-page__item_meta">Дата: <?php the_date(); ?></span>
-                        <span class="news-page__item_meta">Просмотров: <?php the_field('views'); ?></span>
-                        <span class="news-page__item_meta">Добавил: <?php the_author(); ?></span>
-                      </div>
-                      <p class="news-page__item_text"><?php the_excerpt(); ?></p>
-                      <a class="btn news-page__item_btn" href="<?php the_permalink(); ?>">читать</a>
-                    </div>
-                  </div>
-              
-                <?php endwhile;?>
+<div class="wrapper">
+	<div class="main__wrapper">
+		<section class="content">
+    <?php echo wpcourses_breadcrumb( ' / ' ); ?>
+			<?php
+      if ( have_posts() ) { ?>
+        <h2>Архив записей</h2>
+        <div class="news__list">
+
+				<?php while ( have_posts() ) {
+					the_post();
+            ?>
+
+            <div class="news">
+              <h3 class="hews__title"><?php the_title(); ?></h3>
+              <div class="news__meta">
+                <span class="news__author"><?php the_author(); ?></span>
+                <span class="news__date"><?php the_date(); ?></span>
               </div>
+              <p class="news__text"><?php the_excerpt(); ?></p>
+              <div class="news__bottom">
+                <a href="<?php the_permalink(); ?>" class="btn news__btn">Читать полностью</a>
+              </div>
+            </div>
             
-            <?php } else {?>
-							<span class="calendar__item_date">Пока нет ни одной новости, скоро они здесь появятся...</span>
-						<?php } ?>
-
-            <?php wp_corenavi($story); ?>
-                <?php wp_reset_postdata(); ?>
-          </div>
+          <?php } ?>
         </div>
-      </section>
-    
+			<?php } ?>
+		</section>
+		
+		<?php get_template_part( 'sidebar' ); ?>
 
+	</div>
+</div>
 <?php
   get_footer();

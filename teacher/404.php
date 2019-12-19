@@ -15,18 +15,7 @@ get_header();
 	<div class="main__wrapper">
 		<section class="content">
 		<?php echo wpcourses_breadcrumb( ' / ' ); ?>
-			<?php
-			if ( have_posts() ) {
-				while ( have_posts() ) {
-					the_post();
-						?>
-						<h2><?php the_title(); ?></h2>
-						<div class="main__content">
-								<?php the_content(); ?>
-						</div>
-						<?php
-				}
-			}?>
+      <h2>Ошибка 404 - Страницы не существует.</h2>
 		</section>
 		
 		<?php get_template_part( 'sidebar' ); ?>

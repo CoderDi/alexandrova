@@ -8,8 +8,8 @@
   <div class="sidebar__block">
     <strong class="sidebar__block_title">Поиск по сайту:</strong>
     <div class="sidebar__block_content">
-      <form class="search-form">
-        <input type="text" class="input search-input" placeholder="Введите запрос...">
+      <form class="search-form" role="search" method="get" action="<?php echo home_url( '/' ); ?>">
+        <input type="search" class="input search-input" placeholder="Введите запрос..." value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>">
         <input type="submit" value="" class="search-submit">
       </form>
     </div>

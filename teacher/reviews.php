@@ -1,13 +1,7 @@
 <?php
-/**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- *
- */
+/*
+Template Name: Reviews
+*/
 
 get_header();
 ?>
@@ -23,7 +17,15 @@ get_header();
 						<h2><?php the_title(); ?></h2>
 						<div class="main__content">
 								<?php the_content(); ?>
-						</div>
+            </div>
+            <section class="comments">
+              <div class="comments__btn--center">
+                <h2 class="comments__btn">Оставить отзыв</h2>
+              </div>
+                          
+                <?php echo do_shortcode( '[anycomment]' ); ?>
+
+            </section>
 						<?php
 				}
 			}?>
@@ -33,4 +35,8 @@ get_header();
 
 	</div>
 </div>
+
+  
+
+
 <?php get_footer();

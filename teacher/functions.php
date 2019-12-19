@@ -11,38 +11,7 @@ add_filter('wpcf7_form_elements', function($content) {
 });
 
 
-add_action( 'init', 'true_register_post_type_init' ); // Использовать функцию только внутри хука init
- 
-function true_register_post_type_init() {
-	
 
-	$labels = array(
-		'name' => 'События',
-		'singular_name' => 'Событие', // админ панель Добавить->Функцию
-		'add_new' => 'Добавить событие',
-		'add_new_item' => 'Добавить событие', // заголовок тега <title>
-		'edit_item' => 'Редактировать событие',
-		'new_item' => 'Новое событие',
-		'all_items' => 'Все события',
-		'view_item' => 'Просмотр события на сайте',
-		'search_items' => 'Искать события',
-		'not_found' =>  'Событий не найдено.',
-		'not_found_in_trash' => 'В корзине нет событий.',
-		'menu_name' => 'События' // ссылка в меню в админке
-	);
-	$args = array(
-		'labels' => $labels,
-		'public' => true,
-		'show_ui' => true, // показывать интерфейс в админке
-		'has_archive' => true, 
-		'menu_icon' => get_stylesheet_directory_uri() .'', // иконка в меню
-		'menu_position' => 20, // порядок в меню
-		'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt'),
-		'taxonomies' => array( 'post_tag')
-	);
-  register_post_type('sobytie_post', $args);
-	
-}
 
 
 	/*
@@ -76,13 +45,62 @@ function true_register_post_type_init() {
 	);
 
 
-	if (function_exists('add_theme_support')) {
-		add_theme_support('menus');
-		}
 
-		register_nav_menus( array(
-			'main_menu' => 'Главное меню'
-		) );
+add_action( 'after_setup_theme', function () {
+	register_nav_menus( [
+		'header-menu' => 'Верхняя область'
+	] );
+} );
+// Изменяет основные параметры меню
+add_filter( 'wp_nav_menu_args', 'filter_wp_menu_args' );
+function filter_wp_menu_args( $args ) {
+	if ( $args['theme_location'] === 'header-menu' ) {
+		$args['container']  = false;
+		$args['items_wrap'] = '<ul class="%2$s">%3$s</ul>';
+		$args['menu_class'] = 'menu__wrapper flex';
+	}
+	return $args;
+}
+// Изменяем атрибут id у тега li
+add_filter( 'nav_menu_item_id', 'filter_menu_item_css_id', 10, 4 );
+function filter_menu_item_css_id( $menu_id, $item, $args, $depth ) {
+	return $args->theme_location === 'header-menu' ? '' : $menu_id;
+}
+// Изменяем атрибут class у тега li
+add_filter( 'nav_menu_css_class', 'filter_nav_menu_css_classes', 10, 4 );
+function filter_nav_menu_css_classes( $classes, $item, $args, $depth ) {
+	if ( $args->theme_location === 'header-menu' ) {
+		$classes = [
+			'menu__item',
+			'menu-node--main_lvl_' . ( $depth + 1 )
+		];
+		if ( $item->current ) {
+			$classes[] = 'menu__item--active';
+		}
+	}
+	return $classes;
+}
+// Изменяет класс у вложенного ul
+add_filter( 'nav_menu_submenu_css_class', 'filter_nav_menu_submenu_css_class', 10, 3 );
+function filter_nav_menu_submenu_css_class( $classes, $args, $depth ) {
+	if ( $args->theme_location === 'header-menu' ) {
+		$classes = [
+			'menu-drop'
+		];
+	}
+	return $classes;
+}
+// Добавляем классы ссылкам
+add_filter( 'nav_menu_link_attributes', 'filter_nav_menu_link_attributes', 10, 4 );
+function filter_nav_menu_link_attributes( $atts, $item, $args, $depth ) {
+	if ( $args->theme_location === 'header-menu' ) {
+		$atts['class'] = 'menu-link';
+		if ( $item->current ) {
+			$atts['class'] .= ' menu-link--active';
+		}
+	}
+	return $atts;
+}
 
 
 
@@ -478,8 +496,25 @@ function kama_recent_comments( $args = array() ){
 }
 
 
-
-
-
-
-
+function wpcourses_breadcrumb( $sep = ' > ' ) {
+	global $post;
+	$out = '';
+	$out .= '<div class="wpcourses-breadcrumbs">';
+	$out .= '<a href="' . home_url( '/' ) . '">Главная</a>';
+	$out .= '<span class="wpcourses-breadcrumbs-sep">' . $sep . '</span>';
+	if ( is_single() ) {
+		$terms = get_the_terms( $post, 'category' );
+		if ( is_array( $terms ) && $terms !== array() ) {
+			$out .= '<a href="' . get_term_link( $terms[0] ) . '">' . $terms[0]->name . '</a>';
+			$out .= '<span class="wpcourses-breadcrumbs-sep">' . $sep . '</span>';
+		}
+	}
+	if ( is_singular() ) {
+		$out .= '<span class="wpcourses-breadcrumbs-last">' . get_the_title() . '</span>';
+	}
+	if ( is_search() ) {
+		$out .= get_search_query();
+	}
+	$out .= '</div><!--.wpcourses-breadcrumbs-->';
+	return $out;
+}

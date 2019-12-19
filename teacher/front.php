@@ -7,23 +7,28 @@ get_header(); ?>
 
 		<div class="slider">
       <div class="wrapper">
-        <div class="slider__wrapper js-slider">
-          <div class="slider__item">
-            <div class="slider__item_container"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/slide1.jpg" alt=""></div>
+        
+          <?php $story = new WP_Query( array( 'post_type' => 'slider','posts_per_page' => 100 ) ); 
+                    
+          if ( $story->have_posts() ) {?>
+          <div class="slider__wrapper js-slider">
+            <?php while ( $story->have_posts() ) : $story->the_post();?>
+                
+            <div class="slider__item">
+              <div class="slider__item_container">
+                <img src="<?php the_field('img'); ?>" alt="">
+              </div>
+            </div>
+          
+            <?php endwhile;?>
+            <?php wp_reset_postdata(); ?>
+          
           </div>
-          <div class="slider__item">
-            <div class="slider__item_container"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/slide2.jpg" alt=""></div>
-          </div>
-          <div class="slider__item">
-            <div class="slider__item_container"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/slide3.jpg" alt=""></div>
-          </div>
-          <div class="slider__item">
-            <div class="slider__item_container"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/slide4.jpg" alt=""></div>
-          </div>
-          <div class="slider__item">
-            <div class="slider__item_container"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/slide3.jpg" alt=""></div>
-          </div>
-        </div>
+          
+          <?php } else {?>
+            <p>Пока нет ни одной новости, скоро они здесь появятся...</p>
+          <?php } ?>
+          
       </div>
     </div>
     <div class="wrapper">

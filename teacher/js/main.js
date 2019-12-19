@@ -39,4 +39,8 @@ $(document).ready(function(){
         $(this).parents("form").find("input[type='submit']").attr("disabled", true);
     }
   });
+
+  $(".menu__item .menu-drop").parents(".menu__item").addClass("menu__item--withdrop");
+
+
 });
