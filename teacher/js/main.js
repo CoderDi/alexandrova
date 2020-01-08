@@ -28,7 +28,33 @@ $(document).ready(function(){
     autoplay: true,
     autoplaySpeed: 6000,
     arrows: true,
-    slidesToShow: 5
+    slidesToShow: 5,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4
+        }
+      },
+      {
+        breakpoint: 980,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 780,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
   });
 
 
@@ -42,5 +68,19 @@ $(document).ready(function(){
 
   $(".menu__item .menu-drop").parents(".menu__item").addClass("menu__item--withdrop");
 
+  $(".butter").click(function(){
+    $(".menu").toggleClass("menu--open");
+  });
+
+
+
+  $('.main__content a').each(function() {
+  	if (!($(this).hasClass('mtli_attachment')) && ($(this).attr('href').indexOf('alexandrova') < 0)) {
+      $(this).addClass('mtli_attachment');
+      $(this).css('background-image', 'url(http://www.google.com/s2/favicons?domain=' + $(this).attr('href').match(/(http|https):\/\/[\w-\.]+[\w-\.]+\//g) + ')');
+      $(this).css('background-size', 'auto 24px');
+    }
+    $(this).attr('target','_blank');
+  });
 
 });

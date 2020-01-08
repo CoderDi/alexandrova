@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="sidebar__block">
+  <div class="sidebar__block sidebar__block--mobile-hide">
     <strong class="sidebar__block_title">Последние комментарии</strong>
     <div class="sidebar__block_content">
       <ul class="recent-comments">
@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <div class="sidebar__block">
+  <div class="sidebar__block sidebar__block--mobile-hide">
     <strong class="sidebar__block_title">Календарь</strong>
     <div class="sidebar__block_content">
       <div class="datepicker-here"></div>

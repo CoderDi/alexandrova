@@ -24,9 +24,18 @@ get_header();
 						<div class="main__content">
 								<?php the_content(); ?>
             </div>
-            <?php get_template_part( 'comments' ); ?>
-						<?php
+            <?php
 				}
+				if( comments_open() ){ ?>
+					<section class="comments">
+						<div class="comments__btn--center">
+							<h2 class="comments__btn">Оставить отзыв</h2>
+						</div>
+												
+							<?php echo do_shortcode( '[anycomment]' ); ?>
+
+					</section>
+				<?php }
 			}?>
 		</section>
 		

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+        .img { display: none }
+        .img:target { display: inline }
+        </style>
+    </defs>
+
+		<svg viewBox="0 0 37 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<g id="butter" class="img">
+				<line x1="36.748" y1="1.59952" x2="0.748047" y2="1.59952" stroke="white" stroke-width="3"/>
+				<line x1="36.748" y1="13.6863" x2="0.748047" y2="13.6863" stroke="white" stroke-width="3"/>
+				<line x1="36.748" y1="25.7731" x2="0.748047" y2="25.7731" stroke="white" stroke-width="3"/>
+			</g>
+		</svg>
+
+
+</svg>

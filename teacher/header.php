@@ -27,14 +27,16 @@
           <?php $all_options = get_option('true_options'); ?>
           <a href="mailto:<?php echo $all_options['my_email']; ?>" class="header__mail"><?php echo $all_options['my_email']; ?></a>
           <a href="tel:<?php echo $all_options['my_phone']; ?>" class="header__phone"><?php echo $all_options['my_phone']; ?></a>
-          
+          <div class="user-info">
           <?php if ( is_user_logged_in() ) { 
             $current_user = wp_get_current_user();
                 echo '<a href="http://alexandrovazoya.ru/wp-admin/profile.php" class="user-name">' . $current_user->user_login . '</a>';?>
-            <a href="<?php echo wp_logout_url(); ?>" class="user-logout">Выход</a>
+              <a href="<?php echo wp_logout_url(); ?>" class="user-logout">Выход</a>
+            
           <?php } else { ?>
             <a class="lrm-login lrm-hide-if-logged-in">Вход/Регистрация</a>
           <?php } ?>
+        </div>
         </div>
       </div>
     </div>
@@ -46,6 +48,7 @@
     <div class="header-bottom">
       <nav class="menu">
         <div class="wrapper">
+          <div class="butter"><i></i> Меню</div>
         <?php
           wp_nav_menu( [
             'theme_location' => 'header-menu',

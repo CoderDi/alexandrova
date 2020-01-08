@@ -105,7 +105,7 @@ function filter_nav_menu_link_attributes( $atts, $item, $args, $depth ) {
 
 
 add_filter( 'wpcf7_autop_or_not', '__return_false' );
-remove_filter( 'the_content', 'wpautop' );// для контента
+// remove_filter( 'the_content', 'wpautop' );// для контента
 remove_filter( 'the_excerpt', 'wpautop' );// для анонсов
 remove_filter( 'comment_text', 'wpautop' );// для комментарий
 
