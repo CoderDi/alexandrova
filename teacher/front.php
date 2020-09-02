@@ -35,11 +35,16 @@ get_header(); ?>
       <div class="main__wrapper">
         <section class="content">
 					<div class="main__content">
-						<div class="photo"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/foto.jpg" alt=""></div>
+						<div class="photo"><img src="<?php echo  get_stylesheet_directory_uri(); ?>/images/foto-new.jpg" alt=""></div>
 						<h2 class="front-title">Добро пожаловать на мой сайт!</h2>
-						<p>Я очень рада видеть Вас у себя в гостях!</p>
-						<p>Я надеюсь, что путешествие по сайту будет не только интересным, но и познавательным. На страничках моего сайта вы найдёте много полезной и интересной информации.</p>
-						<p>Буду рада знакомству, надеюсь на сотрудничество и общение с Вами, дорогие друзья!</p>
+						<?php if ( have_posts() ) {
+              while ( have_posts() ) {
+                the_post();
+                  the_content(); 
+              }
+            }
+            ?>
+            
         	</div>
           
           <div class="news__list">

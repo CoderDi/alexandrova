@@ -10,7 +10,7 @@ get_header();
 		<section class="content">
 		<?php echo wpcourses_breadcrumb( ' / ' ); ?>
       
-    <?php $story = new WP_Query( array( 'post_type' => 'post','posts_per_page' => 3 ) ); 
+    <?php $story = new WP_Query( array( 'post_type' => 'post','posts_per_page' => 100 ) ); 
 									
       if ( $story->have_posts() ) {?>
       <div class="news__list news--page">

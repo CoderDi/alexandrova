@@ -290,9 +290,17 @@ body {
   content: '';
   margin: 0 20px;
 }
+.wsp-ngg_tags-list {
+  display: none !important;
+}
 .footer {
   padding: 30px;
   background-color: #09C;
+}
+.footer__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .footer__title {
   display: block;
@@ -335,11 +343,29 @@ body {
   margin: 0 0 20px;
   color: #0099cc;
 }
+.single-post-img {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  margin-bottom: 15px;
+}
+.single-post-img img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+}
 .content p {
   text-align: justify;
   margin: 0 0 15px;
   /* text-indent: 20px; */
   font-size: 18px;
+}
+.sl-wrapper .sl-image .sl-caption {
+  display: none !important;
+}
+.ngg-galleryoverview.default-view .ngg-gallery-thumbnail-box {
+  padding: 0 10px 20px;
 }
 
 .sidebar__block {
@@ -478,11 +504,11 @@ input[type="submit"]:disabled {
 }
 .photo {
   background: #eee;
-  margin: 0 20px 20px 0;
+  margin: 30px 20px 20px 0;
   float: left;
 }
 .photo img {
-  width: 260px;
+  width: 400px;
   height: auto;
   display: block;
 }
@@ -839,7 +865,7 @@ overflow: hidden;
 .wpcourses-breadcrumbs {
   color: #113255;
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   border-bottom: 1px solid #ddd;
 }
 .wpcourses-breadcrumbs a,
@@ -897,7 +923,33 @@ overflow: hidden;
   color: #ffffff;
   background: #0099cc;
 }
-
+.su-spoiler-style-default > .su-spoiler-title {
+  padding: 10px 20px;
+  border: 1px solid #0099cc;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #0099cc;
+}
+.su-spoiler-style-default > .su-spoiler-title > .su-spoiler-icon {
+  top: 10px;
+}
+.width-img-100 {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  max-width: 700px;
+}
+table td:first-child img {
+  display: block;
+  margin: 0 auto;
+}
+iframe {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 40px;
+}
 
 
 
